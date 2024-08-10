@@ -19,7 +19,11 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./apps/sass-ecomm/test/jest-e2e.json",
     "prepare": "husky",
-    "cz": "commitizen"
+    "cz": "commitizen",
+    "lint:eslint": "eslint '{src,apps,libs,test}/**/*.ts' --no-fix",
+    "lint:prettier": "prettier --check './**/*.ts'",
+    "lint:check": "pnpm run lint:eslint && pnpm run lint:prettier"
+
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -89,7 +93,7 @@
   },
   "lint-staged": {
     "{src,apps,libs,test}/**/*.ts": ["eslint --fix"],
-    "./**/*.{ts,js,json}": ["prettier --write"]
+    "./**/*.{ts,js}": ["prettier --write"]
   },
   "config": {
     "commitizen": {
